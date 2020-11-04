@@ -1,4 +1,4 @@
-var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=97ab95b8a3348a1a4882ff9739694e9c';
+var requestUrl = 'https://api.github.com/repos/twitter/chill/issues?per_page=5';
 
 function getForecast() {
     fetch(requestUrl)
@@ -13,7 +13,6 @@ function getForecast() {
       }
     });
 }
-
 
 
 $( ".btn" ).on( "click", function() {
