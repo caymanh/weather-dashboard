@@ -1,6 +1,6 @@
 //Run script when document is ready
 $(document).ready(function () {
-
+  //Clears weather icon for 5-day forecast each time user clicks the submit button
   function clearIcon() {
     $("#i1", ).empty();
     $("#i2", ).empty();
@@ -22,7 +22,12 @@ $(document).ready(function () {
     function getCoord() {
       fetch(requestUrl)
         .then(function (response1) {
-          return response1.json();
+          if (response1.status == 404) {
+            alert("Please enter a valid city name")
+          } else {
+            return response1.json();
+          }
+        
         })
         .then(function (data1) {
           //Retrieve city coordinates and save them as variables
