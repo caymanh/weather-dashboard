@@ -1,8 +1,12 @@
 //Run script when document is ready
 $(document).ready(function () {
 
-  function initializeCalculator() {
-    $("#i1").empty();
+  function clearIcon() {
+    $("#i1", ).empty();
+    $("#i2", ).empty();
+    $("#i3", ).empty();
+    $("#i4", ).empty();
+    $("#i5", ).empty();
   }
   //Click event listener to run function when "submit" button is hit"
   $(".btn").on("click", function () {
@@ -166,7 +170,7 @@ $(document).ready(function () {
 
               
               });
-            
+              clearIcon();
           }
           getForecast();
         });
