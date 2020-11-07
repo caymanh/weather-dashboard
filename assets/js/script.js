@@ -171,8 +171,11 @@ $(document).ready(function () {
                 var searchResult = data1.city.name;
                 var newSearch = $("<li>").addClass("list-group-item").text(searchResult);
                 $(".list-group").append(newSearch);
-               
-
+                var saveSearch = [];
+                saveSearch.push(newSearch.text());
+                // console.log(saveSearch);
+                // console.log(newSearch.text());
+                localStorage.setItem("city", JSON.stringify(saveSearch));
               
               });
               clearIcon();
