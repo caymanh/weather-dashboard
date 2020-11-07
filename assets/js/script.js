@@ -1,9 +1,14 @@
 //Run script when document is ready
 $(document).ready(function () {
+
+  function initializeCalculator() {
+    $("#i1").empty();
+  }
   //Click event listener to run function when "submit" button is hit"
   $(".btn").on("click", function () {
     //Prevent button from submitting
     event.preventDefault();
+
     //Open Weather API URL to fetch coordinates of city that user is searching for
     var domain = "https://api.openweathermap.org/data/2.5/forecast?q=";
     var city = $(".form-control").val();
@@ -120,19 +125,19 @@ $(document).ready(function () {
 
                 //Display temperature for 5-day forecast
                 document.getElementById("t1").innerHTML =
-                "Temperature: " + data2.daily[1].temp.day + " &#8457";
+                "Temp: " + data2.daily[1].temp.day + " &#8457";
 
                 document.getElementById("t2").innerHTML =
-                "Temperature: " + data2.daily[2].temp.day + " &#8457";
+                "Temp: " + data2.daily[2].temp.day + " &#8457";
 
                 document.getElementById("t3").innerHTML =
-                "Temperature: " + data2.daily[3].temp.day + " &#8457";
+                "Temp: " + data2.daily[3].temp.day + " &#8457";
 
                 document.getElementById("t4").innerHTML =
-                "Temperature: " + data2.daily[4].temp.day + " &#8457";
+                "Temp: " + data2.daily[4].temp.day + " &#8457";
 
                 document.getElementById("t5").innerHTML =
-                "Temperature: " + data2.daily[5].temp.day + " &#8457";
+                "Temp: " + data2.daily[5].temp.day + " &#8457";
 
                 //Display humidity for 5-day forecast
                 document.getElementById("h1").innerHTML =
@@ -150,13 +155,18 @@ $(document).ready(function () {
                 document.getElementById("h5").innerHTML =
                 "Humidity: " + data2.daily[5].humidity + "%";
 
-            
-                document.getElementById("history").style.display = "block";
+                //Change display from "none" to block upon clicking the search button
                 document.getElementById("forecastContainer").style.display = "block";
             
-    
+                //Append search result to search history
+                var searchResult = data1.city.name;
+                var newSearch = $("<li>").addClass("list-group-item").text(searchResult);
+                $(".list-group").append(newSearch);
+               
+
               
               });
+            
           }
           getForecast();
         });
