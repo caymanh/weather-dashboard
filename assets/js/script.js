@@ -181,16 +181,24 @@ $(document).ready(function () {
                   localStorage.setItem("city", JSON.stringify(saveSearch));
                 }
                 searchStorage();
+
+  
+
               });
             clearIcon();
       
           }
           getForecast();
+
         });
     }
+
     getCoord();
    
   });
+
+
+
 });
 
-// document.getElementById("todayDate").innerHTML = "(" + data.list[1].dt_txt.substring(0, 10) + ")";
+
