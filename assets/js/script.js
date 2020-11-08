@@ -17,7 +17,8 @@ $(document).ready(function () {
     //Use Open Weather API URL to fetch coordinates of city that user is searching for
     var domain = "https://api.openweathermap.org/data/2.5/forecast?q=";
     var city = $(".form-control").val();
-    var api = "&units=imperial&appid=97ab95b8a3348a1a4882ff9739694e9c";
+    // var api = "&units=imperial&appid=97ab95b8a3348a1a4882ff9739694e9c";
+    var api = "&units=imperial&appid=c9a9ed03a355403f4cb9a36e931c0b4a";
     var requestUrl = domain + city + api;
     //Function to fetch coordinate of city that user is searching for
     function getCoord() {

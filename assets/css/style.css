@@ -1,27 +1,37 @@
 .search {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .form-group {
-    padding: 0px;
+  padding: 0px;
 }
 
 .list-group {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .todayForecast {
-    border: solid 1px #cecfd2;
+  border: solid 1px #cecfd2;
+  margin: 30px;
 }
 
 #forecastContainer {
-    display: none;
+  display: none;
 }
 
-.btn-success, .btn-warning, .btn-danger {
-    padding: 5px 7px 5px 7px;
+.btn-success,
+.btn-warning,
+.btn-danger {
+  padding: 5px 7px 5px 7px;
 }
 
 .col-2 {
-    background-color: #F6F7F7;
+  background-color: #f6f7f7;
 }
+
+
+.bg-primary {
+  color: white;
+  font-size: larger;
+}
+
