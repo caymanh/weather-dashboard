@@ -1,5 +1,6 @@
 //Run script when document is ready
 $(document).ready(function () {
+  var saveSearch = JSON.parse(localStorage.getItem("city")) || [];
   //Clears weather icon for 5-day forecast each time user clicks the submit button
   function clearIcon() {
     $("#i1").empty();
@@ -13,7 +14,7 @@ $(document).ready(function () {
     //Prevent button from submitting
     event.preventDefault();
 
-    //Open Weather API URL to fetch coordinates of city that user is searching for
+    //Use Open Weather API URL to fetch coordinates of city that user is searching for
     var domain = "https://api.openweathermap.org/data/2.5/forecast?q=";
     var city = $(".form-control").val();
     var api = "&units=imperial&appid=97ab95b8a3348a1a4882ff9739694e9c";
@@ -22,6 +23,7 @@ $(document).ready(function () {
     function getCoord() {
       fetch(requestUrl)
         .then(function (response1) {
+          //Alert user that city name is invalid if 404 error status is received
           if (response1.status == 404) {
             alert("Please enter a valid city name");
           } else {
@@ -70,8 +72,7 @@ $(document).ready(function () {
                   "Wind Speed: " + data2.daily[0].wind_speed + " MPH";
                 var indexUV = data2.daily[0].uvi;
                 //display current day UV index and apply different classes depending on severity level of UV index
-                var today_UV = (document.getElementById("todayUV").innerHTML =
-                  "UV Index: ");
+                document.getElementById("todayUV").innerHTML = "UV Index: ";
                 var badgeSpan = $("<span>");
                 badgeSpan.text(indexUV);
                 $("#todayUV").append(badgeSpan);
@@ -82,7 +83,7 @@ $(document).ready(function () {
                   badgeSpan.addClass("btn-warning");
                 } else badgeSpan.addClass("btn-danger");
 
-                //Display date for the 5-day forecast
+                //Display date for the 5-day forecast using moment.js to convert unix timestamp to calendar date
                 var date1 = moment.unix(data2.daily[1].dt).format("MM/DD/YYYY");
                 document.getElementById("d1").innerHTML = date1;
 
@@ -171,23 +172,24 @@ $(document).ready(function () {
                   "block";
 
                 //Append search result to search history
-                var searchResult = data1.city.name;
-                var newSearch = $("<li>")
-                  .addClass("list-group-item")
-                  .text(searchResult);
-                $(".list-group").append(newSearch);
-                var saveSearch = [];
-                saveSearch.push(newSearch.text());
-                // console.log(saveSearch);
-                // console.log(newSearch.text());
-                localStorage.setItem("city", JSON.stringify(saveSearch));
+                function searchStorage() {
+                  var newSearch = $("<li>")
+                    .addClass("list-group-item")
+                    .text(city);
+                  $(".list-group").append(newSearch);
+                  saveSearch.push(newSearch.text());
+                  localStorage.setItem("city", JSON.stringify(saveSearch));
+                }
+                searchStorage();
               });
             clearIcon();
+      
           }
           getForecast();
         });
     }
     getCoord();
+   
   });
 });
 
