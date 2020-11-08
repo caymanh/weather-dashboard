@@ -2,11 +2,11 @@
 $(document).ready(function () {
   //Clears weather icon for 5-day forecast each time user clicks the submit button
   function clearIcon() {
-    $("#i1", ).empty();
-    $("#i2", ).empty();
-    $("#i3", ).empty();
-    $("#i4", ).empty();
-    $("#i5", ).empty();
+    $("#i1").empty();
+    $("#i2").empty();
+    $("#i3").empty();
+    $("#i4").empty();
+    $("#i5").empty();
   }
   //Click event listener to run function when "submit" button is hit"
   $(".btn").on("click", function () {
@@ -23,11 +23,10 @@ $(document).ready(function () {
       fetch(requestUrl)
         .then(function (response1) {
           if (response1.status == 404) {
-            alert("Please enter a valid city name")
+            alert("Please enter a valid city name");
           } else {
             return response1.json();
           }
-        
         })
         .then(function (data1) {
           //Retrieve city coordinates and save them as variables
@@ -54,7 +53,6 @@ $(document).ready(function () {
                   "http://openweathermap.org/img/wn/" + iconCode + ".png";
                 var icon = document.createElement("IMG");
                 icon.setAttribute("src", iconUrl);
-                console.log(data2);
                 //Retrieve unix timestamp from API
                 var todayUnixDate = data2.daily[0].dt;
                 //Use moment.js to convert unix timestamp to date
@@ -72,13 +70,17 @@ $(document).ready(function () {
                   "Wind Speed: " + data2.daily[0].wind_speed + " MPH";
                 var indexUV = data2.daily[0].uvi;
                 //display current day UV index and apply different classes depending on severity level of UV index
-                document.getElementById("todayUV").innerHTML =
-                  "UV Index: " + indexUV;
+                var today_UV = (document.getElementById("todayUV").innerHTML =
+                  "UV Index: ");
+                var badgeSpan = $("<span>");
+                badgeSpan.text(indexUV);
+                $("#todayUV").append(badgeSpan);
+
                 if (indexUV < 3) {
-                  console.log("btn-success");
+                  badgeSpan.addClass("btn-success");
                 } else if (indexUV < 6) {
-                  console.log("btn-warning");
-                } else console.log("danger");
+                  badgeSpan.addClass("btn-warning");
+                } else badgeSpan.addClass("btn-danger");
 
                 //Display date for the 5-day forecast
                 var date1 = moment.unix(data2.daily[1].dt).format("MM/DD/YYYY");
@@ -134,51 +136,53 @@ $(document).ready(function () {
 
                 //Display temperature for 5-day forecast
                 document.getElementById("t1").innerHTML =
-                "Temp: " + data2.daily[1].temp.day + " &#8457";
+                  "Temp: " + data2.daily[1].temp.day + " &#8457";
 
                 document.getElementById("t2").innerHTML =
-                "Temp: " + data2.daily[2].temp.day + " &#8457";
+                  "Temp: " + data2.daily[2].temp.day + " &#8457";
 
                 document.getElementById("t3").innerHTML =
-                "Temp: " + data2.daily[3].temp.day + " &#8457";
+                  "Temp: " + data2.daily[3].temp.day + " &#8457";
 
                 document.getElementById("t4").innerHTML =
-                "Temp: " + data2.daily[4].temp.day + " &#8457";
+                  "Temp: " + data2.daily[4].temp.day + " &#8457";
 
                 document.getElementById("t5").innerHTML =
-                "Temp: " + data2.daily[5].temp.day + " &#8457";
+                  "Temp: " + data2.daily[5].temp.day + " &#8457";
 
                 //Display humidity for 5-day forecast
                 document.getElementById("h1").innerHTML =
-                "Humidity: " + data2.daily[1].humidity + "%";
+                  "Humidity: " + data2.daily[1].humidity + "%";
 
                 document.getElementById("h2").innerHTML =
-                "Humidity: " + data2.daily[2].humidity + "%";
+                  "Humidity: " + data2.daily[2].humidity + "%";
 
                 document.getElementById("h3").innerHTML =
-                "Humidity: " + data2.daily[3].humidity + "%";
+                  "Humidity: " + data2.daily[3].humidity + "%";
 
                 document.getElementById("h4").innerHTML =
-                "Humidity: " + data2.daily[4].humidity + "%";
+                  "Humidity: " + data2.daily[4].humidity + "%";
 
                 document.getElementById("h5").innerHTML =
-                "Humidity: " + data2.daily[5].humidity + "%";
+                  "Humidity: " + data2.daily[5].humidity + "%";
 
                 //Change display from "none" to block upon clicking the search button
-                document.getElementById("forecastContainer").style.display = "block";
-            
+                document.getElementById("forecastContainer").style.display =
+                  "block";
+
                 //Append search result to search history
                 var searchResult = data1.city.name;
-                var newSearch = $("<li>").addClass("list-group-item").text(searchResult);
+                var newSearch = $("<li>")
+                  .addClass("list-group-item")
+                  .text(searchResult);
                 $(".list-group").append(newSearch);
                 var saveSearch = [];
                 saveSearch.push(newSearch.text());
                 // console.log(saveSearch);
                 // console.log(newSearch.text());
                 localStorage.setItem("city", JSON.stringify(saveSearch));
-              
               });
-              clearIcon();
+            clearIcon();
           }
           getForecast();
         });

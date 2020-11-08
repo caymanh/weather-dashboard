@@ -1,3 +1,7 @@
 #forecastContainer {
     display: none;
 }
+
+.btn-success, .btn-warning, .btn-danger {
+    padding: 5px 7px 5px 7px;
+}
