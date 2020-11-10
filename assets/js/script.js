@@ -1,6 +1,7 @@
 //Run script when document is ready
 $(document).ready(function () {
   var saveSearch = JSON.parse(localStorage.getItem("city")) || [];
+  
   //Clears weather icon for 5-day forecast each time user clicks the submit button
   function clearIcon() {
     $("#i1").empty();
@@ -180,26 +181,31 @@ $(document).ready(function () {
                   $(".list-group").append(newSearch);
                   saveSearch.push(newSearch.text());
                   localStorage.setItem("city", JSON.stringify(saveSearch));
+                 
+                 function displaySearch () {
+                  for (var i = 0; i < saveSearch.length; i++) {
+                    var displayHistory = $("<li>")
+                    .addClass("list-group-item")
+                    .append(saveSearch[i]);
+                    $(".list-group").append(displayHistory);
+                  }
+                  
+                 } 
+
+                 displaySearch();
+          
                 }
                 searchStorage();
-
-  
-
+                
               });
             clearIcon();
-      
+            
           }
           getForecast();
-
+          
         });
     }
 
     getCoord();
-   
   });
-
-
-
 });
-
-
