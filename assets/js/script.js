@@ -197,7 +197,8 @@ $(document).ready(function () {
                 function searchStorage() {
                   var newSearch = $("<li>")
                     .addClass("list-group-item")
-                    .text(city);
+                    .text(city.charAt(0).toUpperCase() + city.substr(1));
+                    
                   $(".list-group").append(newSearch);
                   saveSearch.push(newSearch.text());
                   localStorage.setItem("city", JSON.stringify(saveSearch));
