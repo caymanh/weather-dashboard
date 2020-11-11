@@ -202,7 +202,8 @@ $(document).ready(function () {
                     .text(city.charAt(0).toUpperCase() + city.substr(1));
 
                   $(".list-group").append(newSearch);
-                  saveSearch.push(newSearch.text());
+                  //Add new search to the beginning of an array
+                  saveSearch.unshift(newSearch.text());
                   localStorage.setItem("city", JSON.stringify(saveSearch));
                 }
                 searchStorage();
