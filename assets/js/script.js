@@ -12,6 +12,12 @@ $(document).ready(function () {
     }
   }
 
+  $(document).on("click", ".list-group-item", function() {
+    var clickedCity = $(this).text();
+    console.log(clickedCity);
+})
+ 
+
   //Clears weather icon for 5-day forecast each time user clicks the submit button
   function clearIcon() {
     $("#i1").empty();
@@ -24,6 +30,10 @@ $(document).ready(function () {
   $(".btn").on("click", function () {
     //Prevent button from submitting
     event.preventDefault();
+    if ($(".form-control").val() == "") {
+      alert("Please enter a city name");
+      return;
+    }
 
     //Use Open Weather API URL to fetch coordinates of city that user is searching for
     var domain = "https://api.openweathermap.org/data/2.5/forecast?q=";
