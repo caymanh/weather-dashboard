@@ -5,7 +5,11 @@ Weather dashboard is an application that allows travellers to see the weather ou
 ## Mockup
 
 <p align="center">
-  <img alt="weather-dashboard" src="https://github.com/caymanh/weather-dashboard/blob/main/assets/image/app-screenshot.JPG">
+  <img alt="Weather Dashboard Screenshot 1" src="https://github.com/caymanh/weather-dashboard/blob/main/assets/image/app-screenshot.JPG">
+</p>
+
+<p align="center">
+  <img alt="Weather Dashboard Screenshot 2" src="https://github.com/caymanh/weather-dashboard/blob/main/assets/image/app-screenshot02.JPG">
 </p>
 
 
